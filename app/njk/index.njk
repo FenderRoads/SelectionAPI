@@ -13,14 +13,46 @@
 	<link rel="stylesheet" href="libs/fontawesome/fontawesome.min.css">
 	<link rel="stylesheet" href="css/main.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	{# <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9129b77d259764b1f7e110c4924ff81a1eefff7a71b19c9fbfc25a749acf1006&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;id=map&amp;scroll=true&amp;apikey=c4cd9aa4-e5c6-4ce8-a509-2570bdbcf72f"></script> #}
+	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
 	
+	<div class="main">
+		<div class="main-title">Выбор Аптеки</div>
+		<div class="main-api">
+			<div class="main-api__left">
+				<div class="left-header">
+				
+					<div class="left-geo"><img src="img/@2x/geo.svg" alt=""> Определить свое местоположение</div>
+					<div class="left-input"><input type="text" placeholder="Введите адрес или станцию метро" class="input"><img src="img/@2x/search.svg" alt=""></div>
+					<div class="left-tabs">
+						<div class="left-tabs__item left-tabs__item-active" data-filter="pharmacy">Аптека</div>
+						<div class="left-tabs__item" data-filter="pharmacy-optics">Аптека/Оптика</div>
+						<div class="left-tabs__item" data-filter="pharmacy-optics-drogerie">Аптека/Оптика/Дрогери</div>
+						<div class="left-tabs__item" data-filter="24hours">24 часа</div>
+					</div>
+					<div class="left-note">Отметьте любимую аптеку и вы всегда будете видеть её первой в списке</div>
+				
+				</div>
+				<div class="left-body">
+					<div class="left-list" id="pharms">
 
-	
 
 
+					
+				</div>
+				</div>
+			</div>
+			<div class="main-api__right">
+				<div id="map"></div>
+			</div>
+		</div>
+	</div>
+
+	{# <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=359e16de-332c-44db-a37d-b9765a48ef9a"></script> #}
 	<script src="js/scripts.min.js"></script>
+	<script src="js/data.js"></script>
   <script src="js/common.js"></script>
 </body>
 </html>
