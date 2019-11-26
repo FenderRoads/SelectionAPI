@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Главная</title>
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:image" content="path/to/image.jpg">
+  <link rel="icon" href="img/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+  <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="libs/fontawesome/fontawesome.min.css">
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="main-title">Выбор Аптеки</div>
+    <div class="main-api">
+      <div class="main-api__left">
+        <div class="left-header">
+
+          <div class="left-geo">
+            <img src="img/@2x/geo.svg" alt="">Определить свое местоположение</div>
+          <div class="left-input">
+            <input type="text" placeholder="Введите адрес или станцию метро">
+            <img src="img/@2x/search.svg" alt="">
+          </div>
+          <div class="left-tabs">
+          </div>
+          <div class="left-note">Отметьте любимую аптеку и вы всегда будете видеть её первой в списке</div>
+
+        </div>
+        <div class="left-body">
+          <div class="left-list" id="pharms">
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="main-api__right">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="js/scripts.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+</body>
+
+</html>

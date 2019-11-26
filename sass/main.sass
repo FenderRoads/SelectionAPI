@@ -1,0 +1,213 @@
+@import "_fonts.sass"
+@import "_vars.sass"
+@import "_libs.sass"
+@import "_modules.sass"
+
+*
+	padding: 0
+	margin: 0
+	outline: none
+
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+.normal-satate 
+  transform: skew(-16deg) scale(1) !important
+  opacity: 1 !important
+
+.container
+	width: 100%
+	
+img
+	image-rendering: -webkit-optimize-contrast 
+
+h1, h2, h3, h4, h5, h6
+	margin: 0
+	font-size: 100%
+
+a
+	color: #fff
+	text-decoration: none
+	&:visited, &:active
+		color: inherit
+
+.h1, .h2, .h3, .h4, .h5, .h6
+	text-transform: uppercase
+	line-height: 1.4
+
+li
+	list-style: none
+
+.text-center
+	text-align: center
+	
+body
+	font-size: 16px
+	min-width: 320px
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	opacity: 1
+	color: $text
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+	
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+b, strong
+	font-weight: bold
+    
+	
+// Default Styles
+
+.main
+	background: rgba(#005F61, .4)
+	position: relative
+	display: flex
+	justify-content: center
+	padding-top: 100px
+	.main-title
+		position: absolute
+		top: 50px
+		left: 50%
+		margin-left: -750px
+		font-size: 25px
+		font-weight: bold
+		justify-self: flex-start
+	.main-api
+		background: #ffffff
+		height: 720px
+		overflow: hidden
+		display: flex
+	.main-api__left
+		min-width: 600px
+		padding-top: 201px
+		position: relative
+	.left-header
+		padding-top: 20px
+		padding-left: 30px
+		margin-right: 10px
+		background: #fff
+		position: absolute
+		top: 0
+	.left-geo
+		margin-bottom: 15px
+		img
+			margin-right: 13px
+	.left-input
+		position: relative
+		input
+			width: 100%
+			padding: 11px 15px
+			font-size: 20px
+			border: 1px solid $grey
+			box-sizing: border-box
+		img
+			position: absolute
+			right: 10px
+			top: 11px
+			width: 25px	
+	.left-tabs
+		display: flex
+		justify-content: space-between
+		border-bottom: 1px solid $grey
+	.left-tabs__item
+		padding: 10px 0px
+		cursor: pointer
+	.left-tabs__item-active
+		color: $accent
+		border-bottom: 3px solid $accent
+		font-weight: 700
+	.left-note
+		padding: 10px 0px
+
+
+	.left-body
+		overflow-y: scroll
+		height: 519px
+	.left-body::-webkit-scrollbar
+		display: none
+	.left-list
+	.left-list__item
+		border-top: 1px solid $grey
+		border-bottom: 1px solid $grey
+		padding: 13px 14px
+		box-sizing: border-box
+		position: relative
+		display: flex
+		cursor: pointer
+		&:hover .item-select
+			display: block
+	.item-info
+	.item-info__address
+		font-size: 13px
+	.item-info__places
+		font-size: 13px
+		font-weight: bold
+	.places-item
+		position: relative
+		margin-left: 20px
+		span
+			display: inline-block
+			margin-left: 15px
+		img
+			width: 11px
+		&:before
+			content: ''
+			width: 10px
+			height: 10px
+			border-radius: 10em
+			margin-right: 10px
+			background: red
+			position: absolute
+			left: -18px
+			top: 5px
+	.item-info__type
+		margin-left: 20px
+		font-size: 14px
+	.item-workingtime
+		display: flex
+		align-items: center
+		margin-left: 80px
+	.item-select, .item-reset
+		position: absolute
+		right: 25px
+		top: 24px
+		padding: 8px 0px
+		text-align: center
+		border-radius: 20px
+		font-weight: bold
+		width: 140px
+	.item-reset
+		background: $grey
+		display: none
+	.item-select
+		background: $accent
+		display: none
+
+
+
+	.main-api__right, #map, iframe
+		width: 900px
+		height: 100%
+		padding: 0
+		margin: 0
+
+
+	
+@import "_media"
