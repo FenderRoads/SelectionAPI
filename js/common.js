@@ -1,99 +1,88 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+  // Табы
+  $('.left-tabs__item').on('click', function() {
+    let value = $(this).attr("data-filter");
+    $('.left-list__item').not("."+value).css({"display": "none"});
+    $('.left-list__item').filter("."+value).css({"display": "flex"});
+  });
   
-  ymaps.ready(init);
+  $('.left-tabs .left-tabs__item').on('click', function() {
+    $(this).addClass('left-tabs__item-active').siblings().removeClass('left-tabs__item-active')
+  });
+
+
+  // Поисковой фильтр
+  $(".input").on("keyup", function() {
+    let value = $(this).val().toLowerCase();
+    $(".left-list .left-list__item").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+ymaps.ready(init);
 
 function init() {
 
-    // Создание экземпляра карты.
-    var myMap = new ymaps.Map('map', {
+    let myMap = new ymaps.Map('map', {
             center: [50.443705, 30.530946],
-            zoom: 14
+            zoom: 14,
+            controls: ['geolocationControl', 'zoomControl']
         }, {
             searchControlProvider: 'yandex#search'
         });
-        // Контейнер для меню.
-        // menu = $('<ul class="menu"></ul>');
         
-    for (var i = 0, l = pharms.length; i < l; i++) {
-        createMenuGroup(pharms[i]);
+
+    for (let i = 0, l = pharms.length; i < l; i++) {
+      createItem(pharms[i]);
     }
+  
 
-    function createMenuGroup (group) {
-        // Пункт меню.
-        var menuItem = $(`<div class="left-tabs__item"><a href="#">${group.name}</a></div>`),
-        // Коллекция для геообъектов группы.
-            collection = new ymaps.GeoObjectCollection(null, { preset: group.style });
-        // Контейнер для подменю.
-            // submenu = $('<ul class="submenu"></ul>');
+    function createItem (group) {
 
-        // Добавляем коллекцию на карту.
-        myMap.geoObjects.add(collection);
-        // Добавляем подменю.
-        $('.left-tabs').append(menuItem)
-
-        // menuItem
-        //     // .append(submenu)
-        //     // Добавляем пункт в меню.
-        //     // .appendTo(menu)
-        //     // По клику удаляем/добавляем коллекцию на карту и скрываем/отображаем подменю.
-        //     // .find('a')
-        //     .bind('click', function (e) {
-        //         e.preventDefault();
-        //         if (collection.getParent()) {
-        //             myMap.geoObjects.remove(collection);
-        //             // submenu.hide();
-        //         } else {
-        //             myMap.geoObjects.add(collection);
-        //             // submenu.show();
-        //         }
-        //     });
-        for (var j = 0, m = group.items.length; j < m; j++) {
-            createSubMenu(group.items[j], collection);
+        function rand(min,max,num){
+          return Math.floor(Math.floor(Math.random()*(max-min+1)+min) / num) * num;
         }
-    }
 
-    function createSubMenu (item, collection) {
-        // Пункт подменю.
-        var submenuItem = $(`<div class="left-list__item"><div class="item-info"><div class="item-info__address">${item.address}</div><div class="item-info__places"><div class="places-item"><span class="${item.metroClass}">${item.metro}</span> <span><img src="img/@2x/people.svg" alt=""> 400 m</span></div></div><div class="item-info__type">Аптека</div></div><div class="item-workingtime"><span>${item.schedule}</span></div><div class="item-select">Выбрать</div><div class="item-reset">Сбросить</div></div>`),
-        // Создаем метку.
-            placemark = new ymaps.Placemark(item.coords, { balloonContent: item.metro });
+        let randNum = rand(150, 750, 25),
 
-        // Добавляем метку в коллекцию.
+        time = Math.floor(Math.random() * 5) + 2,
+
+        item = $(`<div class="left-list__item ${group.type}"><div class="item-info"><div class="item-info__address">${group.address}</div><div class="item-info__places"><div class="places-item ${group.statusColor}"><span class="${group.metroClass}">${group.metro}</span> <span><img src="img/@2x/people.svg" alt=""> ${randNum} m</span></div></div><div class="item-info__type">${group.typeRu}</div></div><div class="item-workingtime"><span>${group.schedule}</span></div><div class="item-select">Выбрать</div><div class="item-reset">Сбросить</div></div>`),
+
+        placemark = new ymaps.Placemark(group.coords, { 
+          balloonContentBody: `<div class="item-info"><div class="item-info__address"><img src="img/@2x/heart.svg" alt=""> ${group.address}</div><div class="item-info__places"><div class="places-item ${group.statusColor}"><span class="${group.metroClass}">${group.metro}</span> <span><img src="img/@2x/people.svg" alt=""> ${randNum} m</span></div></div><div class="item-info__open">Откроеться через ${time} часа(ов)</div><div class="item-info__type">${group.typeRu}</div></div><div class="item-workingtime-balloon"><span>${group.schedule}</span></div>`,
+          balloonContentFooter: `<div class="balloon-button">Сбросить</div>`
+        },{
+          iconLayout: 'default#image',
+          iconImageHref: 'img/@2x/icon-mark.svg',
+          iconImageSize: [22, 22],
+          iconImageOffset: [-5, -14]
+        }),
+        collection = new ymaps.GeoObjectCollection(null, { preset: group.style });
+
+        myMap.geoObjects.add(collection);
         collection.add(placemark);
-        // Добавляем пункт в подменю.
-        $('.left-list').append(submenuItem)
 
-        $(submenuItem).find('.item-select').on('click', function() {
+        $('.left-list').append(item)
+        
+        $(item).find('.item-select').on('click', function() {
           if (!placemark.balloon.isOpen()) {
             placemark.balloon.open();
           }
           return false;
         });
 
-        $(submenuItem).find('.item-reset').on('click', function() {
-          if (placemark.balloon.isOpen()) {
-            placemark.balloon.close();
-          }
-          return false;
-        });
-        // submenuItem
-        //     // .appendTo(submenu)
-        //     // При клике по пункту подменю открываем/закрываем баллун у метки.
-        //     .find('.item-select')
-        //     .bind('click', function () {
-        //         if (!placemark.balloon.isOpen()) {
-        //             placemark.balloon.open();
-        //         } else {
-        //             placemark.balloon.close();
-        //         }
-        //         return false;
-        //     });
+        // $(item).find('.item-reset').on('click', function() {
+        //   if (placemark.balloon.isOpen()) {
+        //     placemark.balloon.close();
+        //   }
+        //   return false;
+        // });
     }
 
-    // Добавляем меню в тэг BODY.
-    // menu.appendTo($('body'));
-    // Выставляем масштаб карты чтобы были видны все группы.
     myMap.setBounds(myMap.geoObjects.getBounds());
 }
+
 });
 

@@ -80,7 +80,7 @@ b, strong
 	position: relative
 	display: flex
 	justify-content: center
-	padding-top: 100px
+	padding: 100px 0px
 	.main-title
 		position: absolute
 		top: 50px
@@ -100,17 +100,22 @@ b, strong
 		position: relative
 	.left-header
 		padding-top: 20px
-		padding-left: 30px
-		margin-right: 10px
 		background: #fff
 		position: absolute
 		top: 0
+		border-bottom: 1px solid $grey
+		width: 600px
+		box-sizing: border-box
 	.left-geo
 		margin-bottom: 15px
+		margin-left: 30px
 		img
 			margin-right: 13px
+			width: 17px
 	.left-input
 		position: relative
+		margin-right: 10px
+		margin-left: 30px
 		input
 			width: 100%
 			padding: 11px 15px
@@ -124,17 +129,21 @@ b, strong
 			width: 25px	
 	.left-tabs
 		display: flex
-		justify-content: space-between
+		justify-content: center
 		border-bottom: 1px solid $grey
 	.left-tabs__item
-		padding: 10px 0px
+		padding: 10px 16px
 		cursor: pointer
 	.left-tabs__item-active
 		color: $accent
 		border-bottom: 3px solid $accent
 		font-weight: 700
+	.left-tabs__item-active
+			display: flex
 	.left-note
 		padding: 10px 0px
+		font-size: 14px
+		text-align: center
 
 
 	.left-body
@@ -144,18 +153,21 @@ b, strong
 		display: none
 	.left-list
 	.left-list__item
-		border-top: 1px solid $grey
 		border-bottom: 1px solid $grey
 		padding: 13px 14px
 		box-sizing: border-box
 		position: relative
-		display: flex
-		cursor: pointer
+		display: none
 		&:hover .item-select
 			display: block
+	.left-list__item-active
+		display: flex
+	.left-list__item.pharmacy
+		display: block
 	.item-info
 	.item-info__address
 		font-size: 13px
+		color: $dark-grey
 	.item-info__places
 		font-size: 13px
 		font-weight: bold
@@ -164,9 +176,10 @@ b, strong
 		margin-left: 20px
 		span
 			display: inline-block
-			margin-left: 15px
+			margin-left: 3px
 		img
-			width: 11px
+			width: 8px
+			margin-bottom: 4px
 		&:before
 			content: ''
 			width: 10px
@@ -184,6 +197,15 @@ b, strong
 		display: flex
 		align-items: center
 		margin-left: 80px
+		position: absolute
+		top: -15px
+		left: 180px
+		font-size: 14px
+		height: 100%
+		width: 100px
+		text-align: center
+		line-height: 1.3
+		color: $dark-grey
 	.item-select, .item-reset
 		position: absolute
 		right: 25px
@@ -193,6 +215,7 @@ b, strong
 		border-radius: 20px
 		font-weight: bold
 		width: 140px
+		cursor: pointer
 	.item-reset
 		background: $grey
 		display: none
@@ -207,6 +230,83 @@ b, strong
 		height: 100%
 		padding: 0
 		margin: 0
+
+.green
+	&:before
+		background: green !important
+.yellow
+	&:before
+		background: #F8E71C !important
+.blue
+	&:before
+		background: #4A90E2 !important
+.red
+	&:before
+		background: #ED1A35 !important
+.orange
+	&:before
+		background: #F58631 !important
+.grey
+	&:before
+		background: #C8C8C8 !important
+
+.balloon-button
+	background: $grey
+	text-align: center
+	border-radius: 15px
+	width: 100%
+	padding: 8px 0px
+	cursor: pointer
+	transition: all .25s ease
+	color: $dark-grey
+	font-size: 15px
+	font-weight: bold
+	margin-top: 12px
+	&:hover
+		background: darken($grey, 5%)
+		transition: all .25s ease
+.ymaps-2-1-75-balloon__close-button.balloon-button
+	opacity: 1
+.balloon-address
+	position: relative
+	img
+		width: 100%
+.item-workingtime-balloon
+	font-size: 16px
+	margin-left: 24px
+.ymaps-2-1-75-balloon__content
+	min-width: 250px !important
+	display: flex !important
+	padding: 19px 19px !important
+	.item-info__address
+		position: relative
+		margin-bottom: 8px
+		margin-left: 27px
+		img
+			position: absolute
+			left: -30px
+			top: 0
+			width: 20px
+
+	.item-info__type
+		margin-top: 10px
+		margin-left: 25px
+	.item-info__open
+		color: red
+		margin-left: 23px
+.ymaps-2-1-75-balloon__content > ymaps
+	overflow: visible !important
+	height: auto !important
+	width: 100% !important
+.ymaps-2-1-75-balloon__close-button
+	opacity: 1 !important
+	width: 35px !important
+.ymaps-2-1-75-balloon__close+.ymaps-2-1-75-balloon__content
+	margin-right: 0px !important
+	padding-right: 19px !important
+.ymaps-2-1-75-balloon__layout
+	left: 50% !important
+	margin-left: -157px !important
 
 
 	
