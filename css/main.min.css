@@ -465,7 +465,7 @@ b, strong {
 }
 
 .main {
-  background: rgba(0, 95, 97, 0.4);
+  background: rgba(0, 95, 97, 0.15);
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
