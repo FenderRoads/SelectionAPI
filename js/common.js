@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-ymaps.ready(init);
+  ymaps.ready(init);
 
-function init() {
+  function init() {
 
     let myMap = new ymaps.Map('map', {
             center: [50.443705, 30.530946],
@@ -36,16 +36,17 @@ function init() {
     for (let i = 0, l = pharms.length; i < l; i++) {
       createItem(pharms[i]);
     }
-  
 
     function createItem (group) {
 
+        // Генерация метров кратному указанному числу
         function rand(min,max,num){
           return Math.floor(Math.floor(Math.random()*(max-min+1)+min) / num) * num;
         }
 
         let randNum = rand(150, 750, 25),
 
+        // Откроеться через {time} часов
         time = Math.floor(Math.random() * 5) + 2,
 
         item = $(`<div class="left-list__item ${group.type}"><div class="item-info"><div class="item-info__address">${group.address}</div><div class="item-info__places"><div class="places-item ${group.statusColor}"><span class="${group.metroClass}">${group.metro}</span> <span><img src="img/@2x/people.svg" alt=""> ${randNum} m</span></div></div><div class="item-info__type">${group.typeRu}</div></div><div class="item-workingtime"><span>${group.schedule}</span></div><div class="item-select">Выбрать</div><div class="item-reset">Сбросить</div></div>`),
@@ -64,7 +65,7 @@ function init() {
         myMap.geoObjects.add(collection);
         collection.add(placemark);
 
-        $('.left-list').append(item)
+        $('.left-list').append(item);
         
         $(item).find('.item-select').on('click', function() {
           if (!placemark.balloon.isOpen()) {
@@ -73,16 +74,24 @@ function init() {
           return false;
         });
 
-        // $(item).find('.item-reset').on('click', function() {
-        //   if (placemark.balloon.isOpen()) {
-        //     placemark.balloon.close();
-        //   }
-        //   return false;
-        // });
+        $(item).find('.item-reset').on('click', function() {
+          if (placemark.balloon.isOpen()) {
+            placemark.balloon.close();
+          }
+          return false;
+        });
+
+
+        // Почему не работает? ... Кнопка на балуне
+        $('.balloon-button').on('click', function() {
+          placemark.balloon.close();
+          return false;
+        });
+
+
     }
 
     myMap.setBounds(myMap.geoObjects.getBounds());
 }
-
 });
 

@@ -737,8 +737,8 @@ b, strong {
 .balloon-button {
   background: #DFE6E6;
   text-align: center;
-  -webkit-border-radius: 15px;
-          border-radius: 15px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
   width: 100%;
   padding: 8px 0px;
   cursor: pointer;
